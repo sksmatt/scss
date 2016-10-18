@@ -1,0 +1,27 @@
+// Defaults
+$background-color:#fff !default;
+$base-color: #444 !default;
+$base-font-size: 12px !default;
+$base-line-height: 1.6em;
+
+$san-serif: Helvetica, Arial, sans-serif !default;
+$monospace: Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$regular: $san-serif !default;
+
+$h1-font-size: 28px !default;
+$h2-font-size: 20px !default;
+$h3-font-size: 18px !default;
+$h4-font-size: 16px !default;
+$h5-font-size: 14px !default;
+$h6-font-size: 14px !default;
+
+$base-link-color: #c30 !default;
+$base-link-hover-color: #f30 !default;
+
+$body-min-width: 320px !default;
+$animation-speed: 0.2s !default;
+$animation-easing: ease-in-out !default;
+
+$bp-phone: 320px !default;
+$bp-tablet: 768px !default;
+$bp-desktop: 960px !default;

@@ -1,0 +1,156 @@
+@import "compass/utilities/sprites";
+@import "compass/css3/background-size";
+
+// import 1x sprites
+$sprites: sprite-map("glyphs/*.png");
+
+// import 2x sprites
+$sprites2x: sprite-map("glyphs2x/*.png");
+
+// import 3x sprites
+$sprites3x: sprite-map("glyphs3x/*.png");
+
+@mixin _regular-sprite($name, $sprites, $dimensions: true) {
+  @if $dimensions == true {
+    @include sprite-dimensions($sprites, $name);
+  }
+
+  background-position: sprite-position($sprites, $name);
+  background-repeat: no-repeat;
+
+  @each $selector in $sprite-selectors {
+    @if sprite_has_selector($sprites, $name, $selector) {
+      &:#{$selector} {
+        @include sprite-background-position($sprites, "#{$name}_#{$selector}", 0, 0);
+      }
+    }
+  }
+
+
+  @if sprite_has_selector($sprites, $name, active) {
+    .active & {
+      @include sprite-background-position($sprites, "#{$name}_active", 0, 0);
+      :hover > & {
+        @include sprite-background-position($sprites, "#{$name}_active", 0, 0);
+      }
+    }
+  }
+
+  @if sprite_has_selector($sprites, $name, hover) {
+    :hover > &, a:hover & {
+      @include sprite-background-position($sprites, "#{$name}_hover", 0, 0);
+    }
+  }
+}
+
+@mixin _2xsprite($name, $sprites2x) {
+    & {
+      $pos: sprite-position($sprites2x, $name);
+      background-position: nth($pos, 1) nth($pos, 2) / 2;
+      @include background-size(ceil(image-width(sprite-path($sprites2x)) / 2), auto);
+
+      @if sprite_has_selector($sprites, $name, active) {
+        .active & {
+          $pos: sprite-position($sprites2x, "#{$name}_active");
+          background-position: nth($pos, 1) nth($pos, 2) / 2;
+          :hover > & {
+            $pos: sprite-position($sprites2x, "#{$name}_active");
+            background-position: nth($pos, 1) nth($pos, 2) / 2;
+          }
+        }
+      }
+
+      @if sprite_has_selector($sprites, $name, hover) {
+        :hover > & {
+          $pos: sprite-position($sprites2x, "#{$name}_hover");
+          background-position: nth($pos, 1) nth($pos, 2) / 2;
+        }
+      }
+
+      @each $selector in $sprite-selectors {
+        @if sprite_has_selector($sprites2x, $name, $selector) {
+          &:#{$selector} {
+            $pos: sprite-position($sprites2x, "#{$name}_#{$selector}");
+            background-position: nth($pos, 1) nth($pos, 2) / 2;
+          }
+        }
+      }
+    }
+}
+
+@mixin _3xsprite($name, $sprites3x){
+    & {
+      $pos: sprite-position($sprites3x, $name);
+      background-position: nth($pos, 1) nth($pos, 2) / 3;
+      @include background-size(ceil(image-width(sprite-path($sprites2x)) / 2), auto);
+
+      @if sprite_has_selector($sprites, $name, active) {
+        .active & {
+          $pos: sprite-position($sprites3x, "#{$name}_active");
+          background-position: nth($pos, 1) nth($pos, 2) / 3;
+          :hover > & {
+            $pos: sprite-position($sprites3x, "#{$name}_active");
+            background-position: nth($pos, 1) nth($pos, 2) / 3;
+          }
+        }
+      }
+
+      @if sprite_has_selector($sprites, $name, hover) {
+        :hover > & {
+          $pos: sprite-position($sprites3x, "#{$name}_hover");
+          background-position: nth($pos, 1) nth($pos, 2) / 3;
+        }
+      }
+
+      @each $selector in $sprite-selectors {
+        @if sprite_has_selector($sprites3x, $name, $selector) {
+          &:#{$selector} {
+            $pos: sprite-position($sprites3x, "#{$name}_#{$selector}");
+            background-position: nth($pos, 1) nth($pos, 2) / 3;
+          }
+        }
+      }
+    }
+}
+
+
+[class*="glyph-"] {
+  background-image: $sprites;
+  display: inline-block;
+  position: relative;
+  vertical-align: baseline;
+}
+
+@each $i in sprite-names($sprites) {
+  .glyph-#{$i} {
+    @include _regular-sprite($i, $sprites);
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min--moz-device-pixel-ratio: 1.5), (-o-min-device-pixel-ratio: 3/2), (min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  [class*="glyph-"] {
+    background-image: sprite-url($sprites2x);
+  }
+  @each $i in sprite-names($sprites) {
+    .glyph-#{$i} {
+      @include _2xsprite($i, $sprites2x);
+    }
+  }
+}
+
+@mixin at2x($image_name, $w: auto, $h: auto, $extention: '.png') {
+  background-image: image_url($image_name + $extention);
+  $x2img : 'glyphs2x/' + $image_name + $extention;
+  @media all and (-webkit-min-device-pixel-ratio : 1.5) {
+    background-image: image_url($x2img);
+    background-size: $w $h;
+  }
+}
+
+@mixin at3x($image_name, $w: auto, $h: auto, $extention: '.png') {
+  $x3img : 'glyphs3x/' +  $image_name + $extention;
+  @media only screen and (min-device-width: 413px) and (max-device-width: 415px) {
+    background-image: image_url($x3img);
+    background-size: $w $h;
+  }
+}

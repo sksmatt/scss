@@ -1,0 +1,128 @@
+/*
+ * Base
+ */
+body {
+	background: $background-color;
+	color: $base-color;
+	font-family: $regular;
+	margin: 0;
+	padding: 0;
+	min-width: $body-min-width;
+	@include font-smoothing();
+}
+
+a {
+	color: $base-link-color;
+	text-decoration: none;
+	@extend %transition;
+}
+
+a:hover, a:active, a:focus {
+	color:$base-link-hover-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	padding: 0;
+	font-weight: normal;
+}
+
+h1 { font-size: $h1-font-size }
+h2 { font-size: $h2-font-size }
+h3 { font-size: $h3-font-size }
+h4 { font-size: $h4-font-size }
+h5 { font-size: $h5-font-size }
+h6 { font-size: $h6-font-size }
+
+ul {
+	margin: 0;
+	padding: 0 0 0 30px;
+}
+
+form {
+	margin: 0;
+	padding: 0;
+}
+
+input[type='text'],
+input[type='tel'],
+input[type='email'],
+input[type='search'],
+input[type='password'], 
+textarea {
+	border: 1px solid #888;
+	padding: 2px;
+	width: 70%;
+	color: #555;
+	font-family: $regular;
+	font-size: 12px;
+}
+
+code, pre {
+  padding: 0 3px 2px;
+  font-family: $monospace;
+  font-size: 12px;
+  color: #333;
+  @include border-radius(3px);
+}
+
+code {
+  padding: 2px 4px;
+  color: #d14;
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+}
+
+pre {
+  display: block;
+  padding: 8.5px;
+  margin: 0 0 9px;
+  font-size: 12.025px;
+  line-height: 18px;
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre;
+  white-space: pre-wrap;
+  background-color: #f5f5f5;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  @include border-radius(4px);
+}
+
+/*
+ * Helpers
+ */
+
+ul.nav {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+ul.nav li {
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+/*
+ * Lists
+ */
+
+dl {
+	width: 100%;
+	margin: 0;
+}
+
+dt, dd {
+	float: left;
+	margin: 0;
+	padding: 1px 0;
+}
+
+dt {
+	width: 40%;
+	clear: both;
+}
+
+dd {
+	width: 60%;
+}

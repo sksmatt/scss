@@ -1,0 +1,43 @@
+// hide text
+%hide-text {
+  overflow: hidden;
+  text-indent: 101%;
+  white-space: nowrap;
+}
+
+// list reset
+%listreset {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+// clearfix
+%clearfix {
+ &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+}
+
+// transitions
+%transition {
+ @include transition(all $animation-speed $animation-easing);
+}
+
+%transition-color {
+ @include transition(color $animation-speed $animation-easing);
+}
+
+%transition-bg {
+ @include transition(background $animation-speed $animation-easing);
+}
+
+//ellipsis
+%ellipsis {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+

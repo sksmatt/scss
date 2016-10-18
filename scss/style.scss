@@ -1,0 +1,24 @@
+// charset
+@charset "utf-8";
+
+// init lib
+@import "lib/init";
+
+// sprites
+// @import "lib/sprites";
+
+// resets
+@import "vendor/normalize";
+@import "vendor/reset";
+
+// base
+@import "partials/base";
+
+// partials
+@import "partials/header";
+@import "partials/footer";
+
+// sections
+@import "pages/common";
+@import "pages/home";
+@import "pages/internal";
